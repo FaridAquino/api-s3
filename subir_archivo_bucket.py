@@ -3,10 +3,10 @@ import base64
 
 def lambda_handler(event, context):
     try:
-        bucket_name = event['bucket_name']
-        directory_name = event['directory_name']
-        file_name = event['file_name']
-        file_content_base64 = event['file_content']
+        bucket_name = event['body']['bucket_name']
+        directory_name = event['body']['directory_name']
+        file_name = event['body']['file_name']
+        file_content_base64 = event['body']['file_content']
 
         file_bytes = base64.b64decode(file_content_base64)
         s3_client = boto3.client('s3', region_name='us-east-1')
